@@ -5,7 +5,7 @@ import kotlin.random.Random
 import qubic.core.LINES
 
 class ForcedSequenceBot : GameBot {
-    fun heuristic(state: GameState): Float {
+    private fun heuristic(state: GameState): Float {
         var forcedLines = 0
         return LINES.map {
             val countToMove = it.count { i -> state.cells[i] == state.toMove }
@@ -32,7 +32,7 @@ class ForcedSequenceBot : GameBot {
         }.sum()
     }
 
-    fun GameState.winningMove(): Int? {
+    private fun GameState.winningMove(): Int? {
         val winningLine = LINES
             .firstOrNull {
                 it.count { i -> cells[i] == toMove } == 3 && it.count { i -> cells[i] == null } == 1
@@ -44,7 +44,7 @@ class ForcedSequenceBot : GameBot {
         }
     }
 
-    fun GameState.forcedMove(): Int? {
+    private fun GameState.forcedMove(): Int? {
         val forcingLine = LINES
             .firstOrNull {
                 it.count { i -> cells[i] != null && cells[i] != toMove } == 3 && it.count { i -> cells[i] == null } == 1
@@ -56,7 +56,7 @@ class ForcedSequenceBot : GameBot {
         }
     }
 
-    fun findForcedSequence(state: GameState, depth: Int = 0): Int? {
+    private fun findForcedSequence(state: GameState, depth: Int = 0): Int? {
         val possibleMoves = (0..63).filter {
             state.isEmpty(it)
         }

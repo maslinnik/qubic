@@ -5,7 +5,7 @@ import kotlin.random.Random
 import qubic.core.LINES
 
 class HeuristicBot : GameBot {
-    fun heuristic(state: GameState): Float {
+    private fun heuristic(state: GameState): Float {
         var forcedLines = 0
         return LINES.map {
             val countToMove = it.count { i -> state.cells[i] == state.toMove }
