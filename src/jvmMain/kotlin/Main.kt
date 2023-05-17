@@ -5,6 +5,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +33,8 @@ fun main() = application {
         state = WindowState(size = DpSize.Unspecified),
         title = "QUBIC",
         onCloseRequest = ::exitApplication,
-        resizable = false
+        resizable = false,
+        icon = painterResource("icon.png")
     ) {
         var helpMenuActive by remember { mutableStateOf(false) }
         var menuState by remember { mutableStateOf(MenuState.MAIN) }
